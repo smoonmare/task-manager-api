@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 
+// Load Mongoose models
+const { List, Task } = require('./db/models');
+
 /* Route Handlers */
 
 /* List Routes */
