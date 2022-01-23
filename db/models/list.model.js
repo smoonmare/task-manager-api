@@ -2,13 +2,13 @@ const mongoose = require('mongoose');
 
 const ListSchema = new mongoose.Schema({
   title: {
-    tyle: String,
+    type: String,
     required: true,
     minlength: 1,
     trim: true
   }
 })
 
-const List = mongoose.Model('List', ListSchema);
+const List = mongoose.model('List', ListSchema);
 
 module.export = { List }

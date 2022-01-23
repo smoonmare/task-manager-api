@@ -1,8 +1,14 @@
 const express = require('express');
 const app = express();
+const {mongoose} = require('./db/mongoose');
+const bodyParser = require('body-parser');
 
 // Load Mongoose models
-const { List, Task } = require('./db/models');
+// const { List, Task } = require('./db/models/index');
+const { List } = require('./db/models/list.model');
+
+// Load Middleware
+app.use(bodyParser.json());
 
 /* Route Handlers */
 
@@ -14,6 +20,9 @@ const { List, Task } = require('./db/models');
  */
 app.get('/lists', (req,res) => {
   // Returns an array of all the projects in database
+  List.find({}).then((list) => {
+    res.send(lists);
+  });
 });
 
 /**
@@ -22,6 +31,13 @@ app.get('/lists', (req,res) => {
  */
 app.post('/lists', (req, res) => {
   // Creates a new project and returns the new project /w ID field in JSON format
+  let title = req.body.title;
+  let newList = new List({
+    title
+  });
+  newList.save().then((listDoc) => {
+    res.send(listDoc);
+  });
 });
 
 /**
