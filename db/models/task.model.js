@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const TaskSchema = new mongoose.Schema({
   title: {
-    tyle: String,
+    type: String,
     required: true,
     minlength: 1,
     trim: true
@@ -13,6 +13,6 @@ const TaskSchema = new mongoose.Schema({
   }
 });
 
-const Task = mongoose.Model('Task', TaskSchema);
+const Task = mongoose.model('Task', TaskSchema);
 
 module.exports = { Task }

@@ -9,8 +9,6 @@ mongoose.connect('mongodb://0.0.0.0:27017/TaskManager', { useNewUrlParser: true 
           console.log(error);
         });
 
-
-
 module.exports = {
   mongoose
 };
