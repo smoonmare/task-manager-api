@@ -48,7 +48,12 @@ app.post('/lists', (req, res) => {
  */
 app.patch('/lists/:id', (req, res) => {
   // Updates the specified list /w the new values from JSON request
-});
+  List.findOneAndUpdate({ _id: req.params.id }, {
+    $set: req.body
+  }).then(() => {
+      res.sendStatus(200);
+    });
+  });
 
 /**
  * DELETE /lists/:id
