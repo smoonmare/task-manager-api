@@ -82,13 +82,33 @@ app.get('/lists/:listId/tasks', (req, res) => {
   });
 });
 
+/**
+ * POST /lists/:listId/tasks
+ * Purpose: Create a new task on a specific list
+ */
 app.post('/lists/:listId/tasks', (req, res) => {
+  // Creates the new task on a specific List id
   let newTask = new Task({
     title: req.body.title,
     _listId: req.params.listId
   });
   newTask.save().then((newTaskDoc) => {
     res.send(newTaskDoc);
+  });
+});
+
+/**
+ * PATCH /lists/:listsId/tasks/:taskId
+ * Purpose: update a specific task in the List
+ */
+app.patch('/lists/:listId/tasks/:taskId', (req, res) => {
+  Task.findOneAndUpdate({
+    _id: req.params.taskId,
+    _listId: req.params.listId
+  }, {
+    $set: req.body
+  }).then(() => {
+    res.sendStatus(200);
   });
 });
 
