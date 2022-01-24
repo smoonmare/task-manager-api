@@ -20,8 +20,10 @@ app.use(bodyParser.json());
  */
 app.get('/lists', (req,res) => {
   // Returns an array of all the projects in database
-  List.find({}).then((list) => {
+  List.find().then((lists) => {
     res.send(lists);
+  }).catch((error) => {
+    res.send(error);
   });
 });
 

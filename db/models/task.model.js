@@ -15,4 +15,4 @@ const TaskSchema = new mongoose.Schema({
 
 const Task = mongoose.Model('Task', TaskSchema);
 
-module.export = { Task }
+module.exports = { Task }
