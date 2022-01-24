@@ -60,7 +60,12 @@ app.patch('/lists/:id', (req, res) => {
  * Purpose: Delete a list
  */
 app.delete('/lists/:id', (req, res) => {
-  // Deletes the specified list 
+  // Deletes the specified list
+  List.findOneAndRemove({
+    _id: req.params.id
+  }).then((removedListDoc) => {
+    res.send(removedListDoc);
+  })
 });
 
 app.listen(3000, () => {
