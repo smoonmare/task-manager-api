@@ -83,6 +83,19 @@ app.get('/lists/:listId/tasks', (req, res) => {
 });
 
 /**
+ * GET /lists/:listId/tasks/taskId
+ * Purpose: get a single Task by ID from List
+ */
+// app.get('/lists/:listId/tasks/:taskId', (req, res) => {
+//   Task.findOne({
+//     _id: req.params.taskId,
+//     _listId: req.params.listId
+//   }).then((task) => {
+//     res.send(task);
+//   });
+// });
+
+/**
  * POST /lists/:listId/tasks
  * Purpose: Create a new task on a specific list
  */
@@ -109,6 +122,19 @@ app.patch('/lists/:listId/tasks/:taskId', (req, res) => {
     $set: req.body
   }).then(() => {
     res.sendStatus(200);
+  });
+});
+
+/**
+ * DELETE /lists/:listId/tasks/:taskId
+ * Purpose: Delete Task on List
+ */
+app.delete('/lists/:listId/tasks/:taskId', (req, res) => {
+  Task.findOneAndRemove({
+    _id: req.params.taskId,
+    _listId: req.params.listId
+  }).then((removedTaskDoc) => {
+    res.send(removedTaskDoc);
   });
 });
 
